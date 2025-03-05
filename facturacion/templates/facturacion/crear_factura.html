@@ -6,10 +6,10 @@
 <h2>Crear Factura</h2>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_p }}  <!-- Formulario principal de la factura -->
     <h3>Productos</h3>
-    {{ formset.management_form }}
-    <table class="table">
+    {{ formset.management_form }}  <!-- Gestión del formset -->
+    <table class="table" id="formset-table">
         <thead>
             <tr>
                 <th>Producto</th>
@@ -29,7 +29,38 @@
             {% endfor %}
         </tbody>
     </table>
+    <button type="button" id="add-product" class="btn btn-secondary">Agregar Producto</button>
     <button type="submit" class="btn btn-primary">Guardar</button>
     <a href="{% url 'lista_facturas' %}" class="btn btn-secondary">Cancelar</a>
 </form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addButton = document.getElementById('add-product');
+    const formsetContainer = document.querySelector('#formset-table tbody');
+    const totalForms = document.getElementById('id_form-TOTAL_FORMS');
+
+    addButton.addEventListener('click', function() {
+        const formCount = parseInt(totalForms.value);
+        const newForm = formsetContainer.querySelector('tr').cloneNode(true);
+
+        // Actualiza los nombres de los campos del formulario
+        newForm.innerHTML = newForm.innerHTML.replace(/form-\d+-/g, `form-${formCount}-`);
+        newForm.innerHTML = newForm.innerHTML.replace(/id_form-\d+-/g, `id_form-${formCount}-`);
+
+        // Limpia los valores del nuevo formulario
+        newForm.querySelectorAll('input, select').forEach(function(input) {
+            if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+
+        // Agrega el nuevo formulario a la tabla
+        formsetContainer.appendChild(newForm);
+
+        // Incrementa el contador de formularios
+        totalForms.value = formCount + 1;
+    });
+});
+</script>
 {% endblock %}

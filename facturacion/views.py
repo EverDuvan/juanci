@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Producto, Cotizacion, Factura, Movimiento
-from .forms import ProductoForm, CotizacionForm, FacturaForm, MovimientoForm
+from .forms import DetalleCotizacionFormSet, DetalleFacturaFormSet, ProductoForm, CotizacionForm, FacturaForm, MovimientoForm
 
 def inicio(request):
     return render(request, 'facturacion/inicio.html')
@@ -32,12 +32,16 @@ def lista_cotizaciones(request):
 def crear_cotizacion(request):
     if request.method == 'POST':
         form = CotizacionForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('lista_cotizaciones')
+        formset = DetalleCotizacionFormSet(request.POST)
+        if form.is_valid() and formset.is_valid():
+            cotizacion = form.save()  # Guarda la cotización
+            formset.instance = cotizacion  # Asocia los detalles con la cotización
+            formset.save()  # Guarda los detalles
+            return redirect('lista_cotizaciones')  # Redirige a la lista de cotizaciones
     else:
         form = CotizacionForm()
-    return render(request, 'facturacion/crear_cotizacion.html', {'form': form})
+        formset = DetalleCotizacionFormSet()
+    return render(request, 'facturacion/crear_cotizacion.html', {'form': form, 'formset': formset})
 
 # Vistas para Factura
 def lista_facturas(request):
@@ -51,12 +55,16 @@ def detalle_factura(request, pk):
 def crear_factura(request):
     if request.method == 'POST':
         form = FacturaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('lista_facturas')
+        formset = DetalleFacturaFormSet(request.POST)
+        if form.is_valid() and formset.is_valid():
+            factura = form.save()  # Guarda la factura
+            formset.instance = factura  # Asocia los detalles con la factura
+            formset.save()  # Guarda los detalles
+            return redirect('lista_facturas')  # Redirige a la lista de facturas
     else:
         form = FacturaForm()
-    return render(request, 'facturacion/crear_factura.html', {'form': form})
+        formset = DetalleFacturaFormSet()
+    return render(request, 'facturacion/crear_factura.html', {'form': form, 'formset': formset})
 
 # Vistas para Movimiento
 def lista_movimientos(request):

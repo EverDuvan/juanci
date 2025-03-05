@@ -60,7 +60,7 @@ class Producto(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
     estado = models.CharField(max_length=50)
-    observaciones = models.TextField(blank=True, null=True)
+    observaciones = models.CharField(max_length=200, blank=True, null=True)
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
     stock_actual = models.IntegerField(default=0)
     stock_minimo = models.IntegerField(default=0)
@@ -84,7 +84,7 @@ class Cotizacion(models.Model):
     fecha_emision = models.DateTimeField(auto_now_add=True)
     fecha_vencimiento = models.DateTimeField()
     estado = models.CharField(max_length=50, default="Pendiente")
-    observaciones = models.TextField(blank=True, null=True)
+    observaciones = models.CharField(max_length=200, blank=True, null=True)
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
@@ -139,7 +139,7 @@ class Factura(models.Model):
     numero = models.CharField(max_length=20, unique=True)
     fecha_emision = models.DateTimeField(auto_now_add=True)
     estado = models.CharField(max_length=50, default="Pendiente")
-    observaciones = models.TextField(blank=True, null=True)
+    observaciones = models.CharField(max_length=200, blank=True, null=True)
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 

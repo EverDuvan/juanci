@@ -6,9 +6,9 @@
 <h2>Crear Cotización</h2>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_p }}  <!-- Formulario principal de la cotización -->
     <h3>Productos</h3>
-    {{ formset.management_form }}
+    {{ formset.management_form }}  <!-- Gestión del formset -->
     <table class="table">
         <thead>
             <tr>
@@ -33,3 +33,24 @@
     <a href="{% url 'lista_cotizaciones' %}" class="btn btn-secondary">Cancelar</a>
 </form>
 {% endblock %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const addButton = document.createElement('button');
+        addButton.textContent = 'Agregar Producto';
+        addButton.className = 'btn btn-secondary mt-3';
+        addButton.type = 'button';
+    
+        const formsetContainer = document.querySelector('tbody');
+        const totalForms = document.getElementById('id_form-TOTAL_FORMS');
+    
+        addButton.addEventListener('click', function() {
+            const formCount = parseInt(totalForms.value);
+            const newForm = formsetContainer.querySelector('tr').cloneNode(true);
+            newForm.innerHTML = newForm.innerHTML.replace(/form-\d+/g, `form-${formCount}`);
+            formsetContainer.appendChild(newForm);
+            totalForms.value = formCount + 1;
+        });
+    
+        document.querySelector('form').appendChild(addButton);
+    });
+    </script>
