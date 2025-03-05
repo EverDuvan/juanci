@@ -1,0 +1,74 @@
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Producto, Cotizacion, Factura, Movimiento
+from .forms import ProductoForm, CotizacionForm, FacturaForm, MovimientoForm
+
+def inicio(request):
+    return render(request, 'facturacion/inicio.html')
+
+# Vistas para Producto
+def lista_productos(request):
+    productos = Producto.objects.all()
+    return render(request, 'facturacion/lista_productos.html', {'productos': productos})
+
+def crear_producto(request):
+    if request.method == 'POST':
+        form = ProductoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_productos')
+    else:
+        form = ProductoForm()
+    return render(request, 'facturacion/crear_producto.html', {'form': form})
+
+def detalle_producto(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    return render(request, 'facturacion/detalle_producto.html', {'producto': producto})
+
+# Vistas para Cotización
+def lista_cotizaciones(request):
+    cotizaciones = Cotizacion.objects.all()
+    return render(request, 'facturacion/lista_cotizaciones.html', {'cotizaciones': cotizaciones})
+
+def crear_cotizacion(request):
+    if request.method == 'POST':
+        form = CotizacionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_cotizaciones')
+    else:
+        form = CotizacionForm()
+    return render(request, 'facturacion/crear_cotizacion.html', {'form': form})
+
+# Vistas para Factura
+def lista_facturas(request):
+    facturas = Factura.objects.all()
+    return render(request, 'facturacion/lista_facturas.html', {'facturas': facturas})
+
+def detalle_factura(request, pk):
+    factura = get_object_or_404(Factura, pk=pk)
+    return render(request, 'facturacion/detalle_factura.html', {'factura': factura})
+
+def crear_factura(request):
+    if request.method == 'POST':
+        form = FacturaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_facturas')
+    else:
+        form = FacturaForm()
+    return render(request, 'facturacion/crear_factura.html', {'form': form})
+
+# Vistas para Movimiento
+def lista_movimientos(request):
+    movimientos = Movimiento.objects.all()
+    return render(request, 'facturacion/lista_movimientos.html', {'movimientos': movimientos})
+
+def crear_movimiento(request):
+    if request.method == 'POST':
+        form = MovimientoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_movimientos')
+    else:
+        form = MovimientoForm()
+    return render(request, 'facturacion/crear_movimiento.html', {'form': form})

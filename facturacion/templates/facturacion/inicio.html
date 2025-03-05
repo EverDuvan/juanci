@@ -1,0 +1,18 @@
+{% extends 'facturacion/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h2>Bienvenido a Juanci Admin</h2>
+<p>Esta es la página de inicio.</p>
+<ul>
+    <li><a href="{% url 'lista_productos' %}">Ver productos</a></li>
+    <li><a href="{% url 'crear_producto' %}">Crear producto</a></li>
+    <li><a href="{% url 'lista_cotizaciones' %}">Ver cotizaciones</a></li>
+    <li><a href="{% url 'crear_cotizacion' %}">Crear cotización</a></li>
+    <li><a href="{% url 'lista_facturas' %}">Ver facturas</a></li>
+    <li><a href="{% url 'crear_factura' %}">Crear factura</a></li>
+    <li><a href="{% url 'lista_movimientos' %}">Ver movimientos</a></li>
+    <li><a href="{% url 'crear_movimiento' %}">Crear movimiento</a></li>
+</ul>
+{% endblock %}

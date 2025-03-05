@@ -1,0 +1,35 @@
+{% extends 'facturacion/base.html' %}
+
+{% block title %}Crear Factura{% endblock %}
+
+{% block content %}
+<h2>Crear Factura</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <h3>Productos</h3>
+    {{ formset.management_form }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Descuento</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for form in formset %}
+            <tr>
+                <td>{{ form.producto }}</td>
+                <td>{{ form.cantidad }}</td>
+                <td>{{ form.precio_unitario_sin_iva }}</td>
+                <td>{{ form.descuento }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{% url 'lista_facturas' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

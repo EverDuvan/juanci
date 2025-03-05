@@ -1,0 +1,32 @@
+{% extends 'facturacion/base.html' %}
+
+{% block title %}Productos{% endblock %}
+
+{% block content %}
+<h2>Lista de Productos</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.precio_venta_con_iva }}</td>
+            <td>{{ producto.stock_actual }}</td>
+            <td>
+                <a href="{% url 'detalle_producto' producto.pk %}" class="btn btn-info btn-sm">Ver</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'crear_producto' %}" class="btn btn-primary">Crear Producto</a>
+{% endblock %}

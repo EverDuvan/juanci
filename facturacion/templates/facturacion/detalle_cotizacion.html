@@ -1,0 +1,41 @@
+{% extends 'facturacion/base.html' %}
+
+{% block title %}Detalle de Cotización{% endblock %}
+
+{% block content %}
+<h2>Detalle de Cotización</h2>
+<p><strong>Número:</strong> {{ cotizacion.numero }}</p>
+<p><strong>Cliente:</strong> {{ cotizacion.cliente.nombre }}</p>
+<p><strong>Fecha de Emisión:</strong> {{ cotizacion.fecha_emision }}</p>
+<p><strong>Fecha de Vencimiento:</strong> {{ cotizacion.fecha_vencimiento }}</p>
+<p><strong>Estado:</strong> {{ cotizacion.estado }}</p>
+<p><strong>Observaciones:</strong> {{ cotizacion.observaciones }}</p>
+
+<h3>Productos</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Descuento</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for detalle in cotizacion.detallecotizacion_set.all %}
+        <tr>
+            <td>{{ detalle.producto.nombre }}</td>
+            <td>{{ detalle.cantidad }}</td>
+            <td>{{ detalle.precio_unitario_sin_iva }}</td>
+            <td>{{ detalle.descuento }}</td>
+            <td>{{ detalle.total }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p><strong>Total:</strong> {{ cotizacion.total }}</p>
+
+<a href="{% url 'lista_cotizaciones' %}" class="btn btn-secondary">Volver</a>
+{% endblock %}
