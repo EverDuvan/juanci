@@ -52,6 +52,10 @@ def detalle_factura(request, pk):
     factura = get_object_or_404(Factura, pk=pk)
     return render(request, 'facturacion/detalle_factura.html', {'factura': factura})
 
+def detalle_cotizacion(request, pk):
+    cotizacion = get_object_or_404(Factura, pk=pk)
+    return render(request, 'facturacion/detalle_cotizacion.html', {'cotizacion': cotizacion})
+
 def crear_factura(request):
     if request.method == 'POST':
         form = FacturaForm(request.POST)
