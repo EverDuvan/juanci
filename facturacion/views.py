@@ -57,14 +57,19 @@ def crear_factura(request):
         form = FacturaForm(request.POST)
         formset = DetalleFacturaFormSet(request.POST)
         if form.is_valid() and formset.is_valid():
-            factura = form.save()  # Guarda la factura
-            formset.instance = factura  # Asocia los detalles con la factura
-            formset.save()  # Guarda los detalles
-            return redirect('lista_facturas')  # Redirige a la lista de facturas
+            factura = form.save()
+            formset.instance = factura
+            formset.save()
+            return redirect('lista_facturas')
     else:
         form = FacturaForm()
-        formset = DetalleFacturaFormSet()
-    return render(request, 'facturacion/crear_factura.html', {'form': form, 'formset': formset})
+        # Inicializar el formset con un formulario vacío
+        formset = DetalleFacturaFormSet(initial=[{'cantidad': 0}])
+    
+    return render(request, 'facturacion/crear_factura.html', {
+        'form': form,
+        'formset': formset
+    })
 
 # Vistas para Movimiento
 def lista_movimientos(request):
