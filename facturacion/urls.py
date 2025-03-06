@@ -14,4 +14,5 @@ urlpatterns = [
     path('facturas/crear/', views.crear_factura, name='crear_factura'),
     path('movimientos/', views.lista_movimientos, name='lista_movimientos'),
     path('movimientos/crear/', views.crear_movimiento, name='crear_movimiento'),
+    path('obtener-stock/<int:producto_id>/', views.obtener_stock, name='obtener_stock'),
 ]

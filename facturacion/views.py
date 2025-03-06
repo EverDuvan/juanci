@@ -1,9 +1,14 @@
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Producto, Cotizacion, Factura, Movimiento
 from .forms import DetalleCotizacionFormSet, DetalleFacturaFormSet, ProductoForm, CotizacionForm, FacturaForm, MovimientoForm
 
 def inicio(request):
     return render(request, 'facturacion/inicio.html')
+
+def obtener_stock(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    return JsonResponse({'stock_actual': producto.stock_actual})
 
 # Vistas para Producto
 def lista_productos(request):
