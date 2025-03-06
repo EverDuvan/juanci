@@ -1,0 +1,206 @@
+{% extends 'facturacion/base.html' %}
+{% block title %}
+Crear Movimiento
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% if formset.errors %}
+    <div class="alert alert-danger">
+        Error al cargar los productos: {{ formset.errors }}
+    </div>
+    {% endif %}
+    
+    <h1>Crear Movimiento</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <div id="productos-section">
+            <h3 class="mb-3">Productos</h3>
+            
+            {{ formset.management_form | safe }}
+            
+            <table class="table table-bordered" id="formset-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Descuento</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for form in formset %}
+                    <tr>
+                        <td>{{ form.producto }}</td>
+                        <td>{{ form.cantidad }}</td>
+                        <td>{{ form.precio_unitario_sin_iva }}</td>
+                        <td>{{ form.descuento }}</td>
+                        <td class="total-producto">0.00</td>
+                        <td>
+                            <button 
+                                type="button"
+                                class="btn btn-danger btn-sm eliminar-fila"
+                                data-form-id="{{ form.form.prefix }}">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            No hay productos agregados.
+                            <br><small>Use el botón "Agregar Producto" para comenzar.</small>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="mt-4 text-center">
+                <button 
+                    type="button" 
+                    id="add-product" 
+                    class="btn btn-primary me-2">
+                    Agregar Producto
+                </button>
+                <button 
+                    type="submit" 
+                    class="btn btn-success me-2">
+                    Guardar Movimiento
+                </button>
+                <a 
+                    href="{% url 'lista_movimientos' %}" 
+                    class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('1. Inicializando el script...');
+    
+    // Verificar que el botón existe
+    const addButton = document.getElementById('add-product');
+    console.log('2. Estado del botón:', addButton);
+    
+    // Verificar que el contenedor existe
+    const formsetContainer = document.querySelector('#formset-table tbody');
+    console.log('3. Estado del contenedor:', formsetContainer);
+    
+    // Verificar el template inicial
+    let templateRow = null;
+    if (formsetContainer.children.length > 0) {
+        templateRow = formsetContainer.children[0];
+    } else {
+        const emptyRow = document.createElement('tr');
+        emptyRow.innerHTML = `
+            <td><select name="form-__prefix__-producto" id="id_form-__prefix__-producto"></select></td>
+            <td><input type="number" name="form-__prefix__-cantidad" id="id_form-__prefix__-cantidad"></td>
+            <td><input type="number" name="form-__prefix__-precio_unitario_sin_iva" id="id_form-__prefix__-precio_unitario_sin_iva"></td>
+            <td><input type="number" name="form-__prefix__-descuento" id="id_form-__prefix__-descuento"></td>
+            <td class="total-producto">0.00</td>
+            <td><button type="button" class="btn btn-danger btn-sm eliminar-fila">Eliminar</button></td>
+        `;
+        templateRow = emptyRow;
+    }
+    console.log('4. Estado del template:', templateRow);
+    
+    // Configurar el manejador del botón
+    if (addButton) {
+        addButton.addEventListener('click', function(e) {
+            console.log('5. Botón clickeado');
+            e.preventDefault();
+            
+            // Crear nueva fila usando el template
+            const newRow = templateRow.cloneNode(true);
+            let formCount;
+            
+            // Obtener o crear el elemento del contador
+            const totalForms = document.getElementById('id_form-TOTAL_FORMS');
+            if (totalForms) {
+                formCount = parseInt(totalForms.value);
+                console.log('6. Contador existente:', formCount);
+            } else {
+                formCount = 0;
+                console.log('7. Creando nuevo contador');
+            }
+            
+            // Actualizar nombres de campos
+            updateFormFields(newRow, formCount);
+            console.log('8. Campos actualizados');
+            
+            // Limpiar valores
+            clearFormValues(newRow);
+            console.log('9. Valores limpiados');
+            
+            // Agregar nueva fila
+            formsetContainer.appendChild(newRow);
+            console.log('10. Nueva fila agregada');
+            
+            // Actualizar contador
+            updateFormCount(formCount + 1);
+            
+            // Enfocar nuevo campo producto
+            const select = newRow.querySelector('select');
+            if (select) {
+                select.focus();
+                console.log('11. Enfoque establecido en el select');
+            }
+        });
+    }
+});
+
+// Función para actualizar nombres de campos
+function updateFormFields(row, index) {
+    console.log('12. Actualizando nombres de campos...');
+    const regex = new RegExp(`form-${index-1}-`, 'g');
+    if (row.innerHTML) {
+        row.innerHTML = row.innerHTML.replace(regex, `form-${index}-`);
+        console.log('13. Nombres actualizados correctamente');
+    }
+}
+
+// Función para limpiar valores
+function clearFormValues(row) {
+    console.log('14. Limpiando valores...');
+    const inputs = row.querySelectorAll('input, select');
+    if (inputs) {
+        inputs.forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = '';
+                console.log('15. Valor limpiado:', input.name);
+            }
+        });
+    }
+}
+
+// Función para actualizar contador
+function updateFormCount(newCount) {
+    console.log('16. Actualizando contador...');
+    const totalForms = document.getElementById('id_form-TOTAL_FORMS');
+    if (totalForms) {
+        console.log('17. Elemento encontrado:', totalForms);
+        totalForms.value = newCount;
+        console.log('18. Nuevo valor establecido:', newCount);
+    } else {
+        console.log('19. Elemento no encontrado. Creando...');
+        const formsetManagement = document.createElement('input');
+        formsetManagement.id = 'id_form-TOTAL_FORMS';
+        formsetManagement.name = 'form-TOTAL_FORMS';
+        formsetManagement.type = 'hidden';
+        formsetManagement.value = newCount;
+        document.querySelector('#formset-table').appendChild(formsetManagement);
+        console.log('20. Elemento creado:', formsetManagement);
+    }
+}
+</script>
+{% endblock %}

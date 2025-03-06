@@ -1,5 +1,4 @@
 {% extends 'facturacion/base.html' %}
-
 {% block title %}
 Crear Factura
 {% endblock %}
@@ -7,11 +6,13 @@ Crear Factura
 {% block content %}
 <div class="container mt-4">
     {% if formset.errors %}
-        <div class="alert alert-danger">
-            Error al cargar los productos: {{ formset.errors }}
-        </div>
+    <div class="alert alert-danger">
+        Error al cargar los productos: {{ formset.errors }}
+    </div>
     {% endif %}
-
+    
+    <h1>Crear Factura</h1>
+    
     <form method="post">
         {% csrf_token %}
         
