@@ -53,7 +53,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=200)
     precio_compra = models.DecimalField(max_digits=10, decimal_places=2)
-    iva = models.DecimalField(max_digits=5, decimal_places=2, default=0.19)  # IVA del 19% por defecto
+    iva = models.DecimalField(max_digits=2, decimal_places=0, default=19)  # IVA del 19% por defecto
     precio_venta_sin_iva = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Precio sin IVA")
     precio_venta_con_iva = models.DecimalField(max_digits=10, decimal_places=2, editable=False, verbose_name="Precio con IVA")
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
@@ -70,7 +70,7 @@ class Producto(models.Model):
 
     def save(self, *args, **kwargs):
         """Calcula el precio con IVA automáticamente al guardar el producto."""
-        self.precio_venta_con_iva = self.precio_venta_sin_iva * (1 + self.iva)
+        self.precio_venta_con_iva = self.precio_venta_sin_iva / 100 * self.iva + self.precio_venta_sin_iva
         super().save(*args, **kwargs)
 
     def actualizar_stock(self, cantidad):

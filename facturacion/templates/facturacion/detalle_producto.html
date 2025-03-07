@@ -5,7 +5,12 @@
 {% block content %}
 <h2>{{ producto.nombre }}</h2>
 <p>{{ producto.descripcion }}</p>
-<p>Precio: {{ producto.precio_venta_con_iva }}</p>
+<p> Costo: {{producto.precio_compra}}</p>
+<p>Precio venta sin IVA: {{producto.precio_venta_sin_iva}}</p>
+<p>IVA %: {{ producto.iva }}</p>
+<p>Precio venta con IVA: {{ producto.precio_venta_con_iva }}</p>
 <p>Stock: {{ producto.stock_actual }}</p>
+<td><img src="{{ producto.imagen.url }}" alt="Imagen del producto" style="width:100px; height:auto;"></td>
+<p></p>
 <a href="{% url 'lista_productos' %}" class="btn btn-secondary">Volver</a>
 {% endblock %}
