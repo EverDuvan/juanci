@@ -10,8 +10,12 @@
             <th>Codigo</th>
             <th>Nombre</th>
             <th>Descripción</th>
-            <th>Precio</th>
+            <th>precio compra</th>
+            <th>IVA</th>
+            <th>Precio venta</th>
+            <th>imagen</th>
             <th>Stock</th>
+            
             <th>Acciones</th>
         </tr>
     </thead>
@@ -21,7 +25,10 @@
             <td>{{ producto.codigo }}</td>
             <td>{{ producto.nombre }}</td>
             <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.precio_compra }}</td>
+            <td>{{ producto.iva }}</td>
             <td>{{ producto.precio_venta_con_iva }}</td>
+            <td><img src="{{ producto.imagen.url }}" alt="Imagen del producto" style="width:100px; height:auto;"></td>
             <td>{{ producto.stock_actual }}</td>
             <td>
                 <a href="{% url 'detalle_producto' producto.pk %}" class="btn btn-info btn-sm">Ver</a>
