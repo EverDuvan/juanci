@@ -1,12 +1,16 @@
 from django import forms
 from django.forms import inlineformset_factory
-from .models import DetalleCotizacion, DetalleFactura, Producto, Cotizacion, Factura, Movimiento
+from .models import DetalleCotizacion, DetalleFactura, Producto, Cotizacion, Factura, Movimiento, Proveedor
 
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
         fields = '__all__'
 
+class ProveedorForm(forms.ModelForm):
+    class Meta:
+        model = Proveedor
+        fields = '__all__'
 
 class MovimientoForm(forms.ModelForm):
     class Meta:

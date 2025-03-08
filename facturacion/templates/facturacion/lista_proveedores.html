@@ -1,0 +1,36 @@
+{% extends 'facturacion/base.html' %}
+
+{% block title %}Proveedores{% endblock %}
+
+{% block content %}
+<h2>Lista de Proveedores</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nit</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for proveedor in proveedores %}
+        <tr>
+            <td>{{ proveedor.nit }}</td>
+            <td>{{ proveedor.nombre }}</td>
+            <td>{{ proveedor.apellido }}</td>
+            <td>{{ proveedor.direccion }}</td>
+            <td>{{ proveedor.telefono }}</td>
+            <td>{{ proveedor.email }}</td>
+            <td>
+                <a href="{% url 'detalle_proveedor' proveedor.pk %}" class="btn btn-info btn-sm">Ver</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'crear_proveedor' %}" class="btn btn-primary">Crear Proveedor</a>
+{% endblock %}

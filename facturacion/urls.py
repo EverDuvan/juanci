@@ -14,5 +14,8 @@ urlpatterns = [
     path('facturas/crear/', views.crear_factura, name='crear_factura'),
     path('movimientos/', views.lista_movimientos, name='lista_movimientos'),
     path('movimientos/crear/', views.crear_movimiento, name='crear_movimiento'),
+    path('proveedores/', views.lista_proveedores, name='lista_proveedores'),
+    path('proveedores/crear/', views.crear_proveedor, name='crear_proveedor'),
+    path('proveedores/<int:pk>/', views.detalle_proveedor, name='detalle_proveedor'),
     path('obtener-stock/<int:producto_id>/', views.obtener_stock, name='obtener_stock'),
 ]

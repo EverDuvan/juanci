@@ -1,0 +1,13 @@
+{% extends 'facturacion/base.html' %}
+
+{% block title %}Detalle de Proveedor{% endblock %}
+<h2>Lista Proveedores</h2>
+{% block content %}
+<h2>{{ proveedor.nombre }} {{ proveedor.apellido }}</h2>
+<p>{{ proveedor.nit }}</p>
+<p> Dirección: {{ proveedor.direccion }}</p>
+<p>Telefono: {{ proveedor.telefono }}</p>
+<p>Email: {{ proveedor.email }}</p>
+<p></p>
+<a href="{% url 'lista_proveedores' %}" class="btn btn-secondary">Volver</a>
+{% endblock %}

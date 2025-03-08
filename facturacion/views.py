@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Producto, Cotizacion, Factura, Movimiento
-from .forms import DetalleCotizacionFormSet, DetalleFacturaFormSet, ProductoForm, CotizacionForm, FacturaForm, MovimientoForm
+from .models import Producto, Cotizacion, Factura, Movimiento, Proveedor
+from .forms import DetalleCotizacionFormSet, DetalleFacturaFormSet, ProductoForm, CotizacionForm, FacturaForm, MovimientoForm, ProveedorForm
 
 def inicio(request):
     return render(request, 'facturacion/inicio.html')
@@ -48,6 +48,10 @@ def crear_cotizacion(request):
         formset = DetalleCotizacionFormSet()
     return render(request, 'facturacion/crear_cotizacion.html', {'form': form, 'formset': formset})
 
+def detalle_cotizacion(request, pk):
+    cotizacion = get_object_or_404(Factura, pk=pk)
+    return render(request, 'facturacion/detalle_cotizacion.html', {'cotizacion': cotizacion})
+
 # Vistas para Factura
 def lista_facturas(request):
     facturas = Factura.objects.all()
@@ -56,10 +60,6 @@ def lista_facturas(request):
 def detalle_factura(request, pk):
     factura = get_object_or_404(Factura, pk=pk)
     return render(request, 'facturacion/detalle_factura.html', {'factura': factura})
-
-def detalle_cotizacion(request, pk):
-    cotizacion = get_object_or_404(Factura, pk=pk)
-    return render(request, 'facturacion/detalle_cotizacion.html', {'cotizacion': cotizacion})
 
 def crear_factura(request):
     if request.method == 'POST':
@@ -94,3 +94,36 @@ def crear_movimiento(request):
     else:
         form = MovimientoForm()
     return render(request, 'facturacion/crear_movimiento.html', {'form': form})
+
+def detalle_movimiento(request, pk):
+    movimiento = get_object_or_404(Movimiento, pk=pk)
+    return render(request, 'facturacion/detalle_movimiento.html', {'movimiento': movimiento})
+
+# Vistas para proveedores
+def lista_proveedores(request):
+    proveedores = Proveedor.objects.all().order_by('-id')
+    return render(request, 'facturacion/lista_proveedores.html', {
+        'proveedores': proveedores,
+        'titulo': 'Lista de Proveedores'
+    })
+
+def crear_proveedor(request):
+    if request.method == 'POST':
+        form = ProveedorForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_proveedores')
+    else:
+        form = ProveedorForm()
+    
+    return render(request, 'facturacion/crear_proveedor.html', {
+        'form': form,
+        'titulo': 'Nuevo Proveedor'
+    })
+
+def detalle_proveedor(request, pk):
+    proveedor = get_object_or_404(Proveedor, pk=pk)
+    return render(request, 'facturacion/detalle_proveedor.html', {
+        'proveedor': proveedor,
+        'titulo': f'Detalle de {proveedor.nombre}'
+    })
