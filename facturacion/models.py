@@ -52,6 +52,7 @@ class Producto(models.Model):
     codigo = models.CharField(max_length=20, unique=True)
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=200)
+    categoria = models.CharField( max_length=1, choices=[('A', 'Perecederos'), ('B', 'Categoria B'), ('C', 'Categoria C'), ('D', 'Categoria D'), ('E', 'Categoria E')])
     precio_compra = models.DecimalField(max_digits=10, decimal_places=2)
     iva = models.DecimalField(max_digits=2, decimal_places=0, default=19)  # IVA del 19% por defecto
     precio_venta_sin_iva = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Precio sin IVA")
