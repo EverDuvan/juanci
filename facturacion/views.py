@@ -130,8 +130,8 @@ def detalle_proveedor(request, pk):
 
 # Vistas para clientes
 def lista_clientes(request):
-    clientes = Proveedor.objects.all().order_by('-id')
-    return render(request, 'facturacion/lista_proveedores.html', {
+    clientes = Cliente.objects.all().order_by('-id')
+    return render(request, 'facturacion/lista_clientes.html', {
         'clientes': clientes,
         'titulo': 'Lista de Clientes'
     })
@@ -152,7 +152,7 @@ def crear_cliente(request):
 
 def detalle_cliente(request, pk):
     cliente = get_object_or_404(Cliente, pk=pk)
-    return render(request, 'facturacion/detalle_proveedor.html', {
-        'proveedor': cliente,
+    return render(request, 'facturacion/detalle_cliente.html', {
+        'cliente': cliente,
         'titulo': f'Detalle de {cliente.nombre}'
     })

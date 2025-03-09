@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 class Empresa(models.Model):
     nit = models.CharField(max_length=20, unique=True)
     nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
     direccion = models.CharField(max_length=200)
     telefono = models.CharField(max_length=15)
     email = models.EmailField()
@@ -64,7 +65,7 @@ class Producto(models.Model):
     observaciones = models.CharField(max_length=200, blank=True, null=True)
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
     stock_actual = models.IntegerField(default=0)
-    stock_minimo = models.IntegerField(default=0)
+    stock_minimo = models.IntegerField(default=3)
 
     def __str__(self):
         return f"{self.nombre} - {self.descripcion}"
