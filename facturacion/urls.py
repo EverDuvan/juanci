@@ -17,5 +17,8 @@ urlpatterns = [
     path('proveedores/', views.lista_proveedores, name='lista_proveedores'),
     path('proveedores/crear/', views.crear_proveedor, name='crear_proveedor'),
     path('proveedores/<int:pk>/', views.detalle_proveedor, name='detalle_proveedor'),
+    path('cliente/', views.lista_clientes, name='lista_clientes'),
+    path('cliente/crear/', views.crear_cliente, name='crear_cliente'),
+    path('cliente/<int:pk>/', views.detalle_cliente, name='detalle_cliente'),
     path('obtener-stock/<int:producto_id>/', views.obtener_stock, name='obtener_stock'),
 ]

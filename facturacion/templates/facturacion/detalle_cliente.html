@@ -1,0 +1,13 @@
+{% extends 'facturacion/base.html' %}
+
+{% block title %}Detalle de Cliente{% endblock %}
+<h2>Lista Cliente</h2>
+{% block content %}
+<h2>{{ cliente.nombre }} {{ cliente.apellido }}</h2>
+<p>{{ cliente.nit }}</p>
+<p> Dirección: {{ cliente.direccion }}</p>
+<p>Telefono: {{ cliente.telefono }}</p>
+<p>Email: {{ cliente.email }}</p>
+<p></p>
+<a href="{% url 'lista_cliente' %}" class="btn btn-secondary">Volver</a>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'facturacion/base.html' %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+<h2>Lista de Clientes</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nit</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.nit }}</td>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.apellido }}</td>
+            <td>{{ cliente.direccion }}</td>
+            <td>{{ cliente.telefono }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>
+                <a href="{% url 'detalle_cliente' cliente.pk %}" class="btn btn-info btn-sm">Ver</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'crear_cliente' %}" class="btn btn-primary">Crear Cliente</a>
+{% endblock %}
