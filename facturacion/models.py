@@ -4,10 +4,17 @@ from django.core.exceptions import ValidationError
 class Empresa(models.Model):
     nit = models.CharField(max_length=20, unique=True)
     nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
     direccion = models.CharField(max_length=200)
     telefono = models.CharField(max_length=15)
     email = models.EmailField()
+    imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_modificacion = models.DateTimeField(auto_now=True)
+    usuario = models.CharField(max_length=50, blank=True, null=True)
+    contrasena = models.CharField(max_length=50, blank=True, null=True)
+    fecha_ingreso = models.DateTimeField(auto_now_add=True)
+    fecha_salida = models.DateTimeField(auto_now=True)
+    estado = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return self.nombre
