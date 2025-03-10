@@ -1,29 +1,25 @@
 {% extends 'facturacion/base.html' %}
+{% load static %}
 
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="stylesheet" href="{% load static %}">
+<link rel="stylesheet" href="{% static 'css/estilos.css' %}">  {# Si tienes un archivo de estilos propio #}
 
 <div class="main-content">
     <h2>Bienvenido a Juanci Admin</h2>
     <p>Comercializadora JUANCI</p>
-    <ul>
-        <li><a href="{% url 'lista_productos' %}"><i class="fas fa-box"></i>Ver productos</a></li>
-        <li><a href="{% url 'crear_producto' %}"><i class="fas fa-plus"></i>Crear producto</a></li>
-        <li><a href="{% url 'lista_proveedores' %}"><i class="fas fa-truck"></i>Ver proveedores</a></li>
-        <li><a href="{% url 'crear_proveedor' %}"><i class="fas fa-plus"></i>Crear proveedor</a></li>
-        <li><a href="{% url 'lista_clientes' %}"><i class="fas fa-users"></i>Ver clientes</a></li>
-        <li><a href="{% url 'crear_cliente' %}"><i class="fas fa-plus"></i>Crear cliente</a></li>
-        <li><a href="{% url 'lista_empleados' %}"><i class="fas fa-user-tie"></i>Ver empleados</a></li>
-        <li><a href="{% url 'crear_empleado' %}"><i class="fas fa-plus"></i>Crear empleado</a></li>
-        <li><a href="{% url 'lista_cotizaciones' %}"><i class="fas fa-file-invoice"></i>Ver cotizaciones</a></li>
-        <li><a href="{% url 'crear_cotizacion' %}"><i class="fas fa-plus"></i>Crear cotización</a></li>
-        <li><a href="{% url 'lista_facturas' %}"><i class="fas fa-file-alt"></i>Ver facturas</a></li>
-        <li><a href="{% url 'crear_factura' %}"><i class="fas fa-plus"></i>Crear factura</a></li>
-        <li><a href="{% url 'lista_movimientos' %}"><i class="fas fa-exchange-alt"></i>Ver movimientos</a></li>
-        <li><a href="{% url 'crear_movimiento' %}"><i class="fas fa-plus"></i>Crear movimiento</a></li>
+
+    <ul class="menu-grid">
+        {% for item in menu_items %}
+            <li>
+                <a href="{% url item.url %}">
+                    <i class="fas {{ item.icon }}"></i> {{ item.text }}
+                </a>
+            </li>
+        {% endfor %}
     </ul>
 </div>
+
 {% endblock %}

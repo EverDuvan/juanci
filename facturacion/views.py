@@ -192,3 +192,36 @@ def detalle_empleado(request, pk):
         'titulo': f'Detalle de {empleado.nombre}'
     })
 
+def obtener_menu(request):
+    return {
+        "menu_sections": {
+            "Productos": {
+                "ver": [{"url": "lista_productos", "icon": "fa-box", "text": "Ver productos"}],
+                "crear": [{"url": "crear_producto", "icon": "fa-plus", "text": "Crear producto"}]
+            },
+            "Proveedores": {
+                "ver": [{"url": "lista_proveedores", "icon": "fa-truck", "text": "Ver proveedores"}],
+                "crear": [{"url": "crear_proveedor", "icon": "fa-plus", "text": "Crear proveedor"}]
+            },
+            "Clientes": {
+                "ver": [{"url": "lista_clientes", "icon": "fa-users", "text": "Ver clientes"}],
+                "crear": [{"url": "crear_cliente", "icon": "fa-plus", "text": "Crear cliente"}]
+            },
+            "Empleados": {
+                "ver": [{"url": "lista_empleados", "icon": "fa-user-tie", "text": "Ver empleados"}],
+                "crear": [{"url": "crear_empleado", "icon": "fa-plus", "text": "Crear empleado"}]
+            },
+            "Cotizaciones": {
+                "ver": [{"url": "lista_cotizaciones", "icon": "fa-file-invoice", "text": "Ver cotizaciones"}],
+                "crear": [{"url": "crear_cotizacion", "icon": "fa-plus", "text": "Crear cotización"}]
+            },
+            "Facturas": {
+                "ver": [{"url": "lista_facturas", "icon": "fa-file-alt", "text": "Ver facturas"}],
+                "crear": [{"url": "crear_factura", "icon": "fa-plus", "text": "Crear factura"}]
+            },
+            "Movimientos": {
+                "ver": [{"url": "lista_movimientos", "icon": "fa-exchange-alt", "text": "Ver movimientos"}],
+                "crear": [{"url": "crear_movimiento", "icon": "fa-plus", "text": "Crear movimiento"}]
+            }
+        }
+    }

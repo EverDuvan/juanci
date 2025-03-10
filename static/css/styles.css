@@ -1,0 +1,79 @@
+/* Contenedor general */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+h3 {
+    margin-top: 30px;
+    color: #007bff;
+}
+
+h4 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Contenedor de las secciones */
+.section {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* Contenedor de los botones */
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Agrupación de botones (Ver / Crear) */
+.menu-group {
+    flex: 1;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones */
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.3s;
+    margin: 5px 0;
+}
+
+.menu-item i {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+/* Efecto al pasar el mouse */
+.menu-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
