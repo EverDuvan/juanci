@@ -1,0 +1,36 @@
+{% extends 'facturacion/base.html' %}
+
+{% block title %}Empleados{% endblock %}
+
+{% block content %}
+<h2>Lista de Empleados</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Documeto</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Cargo</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for empleado in empleados %}
+        <tr>
+            <td>{{ empleado.documento }}</td>
+            <td>{{ empleado.nombre }}</td>
+            <td>{{ empleado.apellido }}</td>
+            <td>{{ empleado.cargo }}</td>
+            <td>{{ empleado.telefono }}</td>
+            <td>{{ empleado.email }}</td>
+            <td>
+                <a href="{% url 'detalle_empleado' empleado.pk %}" class="btn btn-info btn-sm">Ver</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'crear_empleado' %}" class="btn btn-primary">Crear Empleado</a>
+{% endblock %}

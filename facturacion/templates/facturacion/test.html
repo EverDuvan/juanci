@@ -1,120 +1,29 @@
 {% extends 'facturacion/base.html' %}
 
-{% block title %}Crear Factura{% endblock %}
+{% block title %}Inicio{% endblock %}
 
 {% block content %}
-<h2>Crear Factura</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}  <!-- Formulario principal de la factura -->
-    <h3>Productos</h3>
-    {{ formset.management_form }}  <!-- Gestión del formset -->
-    <table class="table" id="formset-table">
-        <thead>
-            <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Precio Unitario</th>
-                <th>Descuento</th>
-                <th>Stock Actual</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for form in formset %}
-            <tr>
-                <td>{{ form.producto }}</td>
-                <td>{{ form.cantidad }}</td>
-                <td>{{ form.precio_unitario_sin_iva }}</td>
-                <td>{{ form.descuento }}</td>
-                <td>
-                    <span class="stock-actual" data-producto-id="{{ form.producto.value }}">-</span>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <button type="button" id="add-product" class="btn btn-secondary">Agregar Producto</button>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a href="{% url 'lista_facturas' %}" class="btn btn-secondary">Cancelar</a>
-</form>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="{% load static %}">
 
-{% block scripts %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const addButton = document.getElementById('add-product');
-    const formsetContainer = document.querySelector('#formset-table tbody');
-    const totalForms = document.getElementById('id_form-TOTAL_FORMS');
-
-    // Función para actualizar el stock
-    function actualizarStock(productoId, stockElement) {
-        fetch(`/obtener-stock/${productoId}/`)
-            .then(response => response.json())
-            .then(data => {
-                stockElement.textContent = data.stock_actual;
-            });
-    }
-
-    // Actualizar el stock cuando se selecciona un producto
-    formsetContainer.addEventListener('change', function(event) {
-        if (event.target.tagName === 'SELECT' && event.target.name.includes('producto')) {
-            const productoId = event.target.value;
-            const stockElement = event.target.closest('tr').querySelector('.stock-actual');
-            if (productoId) {
-                actualizarStock(productoId, stockElement);
-            } else {
-                stockElement.textContent = '-';
-            }
-        }
-    });
-
-    // Agregar un nuevo formulario
-    addButton.addEventListener('click', function() {
-        const formCount = parseInt(totalForms.value);
-        const newForm = formsetContainer.querySelector('tr').cloneNode(true);
-
-        // Actualiza los nombres de los campos del formulario
-        newForm.innerHTML = newForm.innerHTML.replace(/form-\d+-/g, `form-${formCount}-`);
-        newForm.innerHTML = newForm.innerHTML.replace(/id_form-\d+-/g, `id_form-${formCount}-`);
-
-        // Limpia los valores del nuevo formulario
-        newForm.querySelectorAll('input, select').forEach(function(input) {
-            if (input.type !== 'hidden') {
-                input.value = '';
-            }
-        });
-
-        // Limpia el stock actual
-        newForm.querySelector('.stock-actual').textContent = '-';
-
-        // Agrega el nuevo formulario a la tabla
-        formsetContainer.appendChild(newForm);
-
-        // Incrementa el contador de formularios
-        totalForms.value = formCount + 1;
-
-        // Reinicializar Select2 para el nuevo campo de producto
-        $(newForm).find('select[name*="producto"]').select2({
-            placeholder: 'Buscar producto...',
-            allowClear: true,
-        });
-    });
-
-    // Actualizar el stock de los productos ya seleccionados
-    document.querySelectorAll('.stock-actual').forEach(function(stockElement) {
-        const productoId = stockElement.getAttribute('data-producto-id');
-        if (productoId) {
-            actualizarStock(productoId, stockElement);
-        }
-    });
-
-    // Inicializar Select2 para los campos de producto existentes
-    $('select[name*="producto"]').select2({
-        placeholder: 'Buscar producto...',
-        allowClear: true,
-    });
-});
-</script>
-{% endblock %}
+<div class="main-content">
+    <h2>Bienvenido a Juanci Admin</h2>
+    <p>Comercializadora JUANCI</p>
+    <ul>
+        <li><a href="{% url 'lista_productos' %}"><i class="fas fa-box"></i>Ver productos</a></li>
+        <li><a href="{% url 'crear_producto' %}"><i class="fas fa-plus"></i>Crear producto</a></li>
+        <li><a href="{% url 'lista_proveedores' %}"><i class="fas fa-truck"></i>Ver proveedores</a></li>
+        <li><a href="{% url 'crear_proveedor' %}"><i class="fas fa-plus"></i>Crear proveedor</a></li>
+        <li><a href="{% url 'lista_clientes' %}"><i class="fas fa-users"></i>Ver clientes</a></li>
+        <li><a href="{% url 'crear_cliente' %}"><i class="fas fa-plus"></i>Crear cliente</a></li>
+        <li><a href="{% url 'lista_empleados' %}"><i class="fas fa-user-tie"></i>Ver empleados</a></li>
+        <li><a href="{% url 'crear_empleado' %}"><i class="fas fa-plus"></i>Crear empleado</a></li>
+        <li><a href="{% url 'lista_cotizaciones' %}"><i class="fas fa-file-invoice"></i>Ver cotizaciones</a></li>
+        <li><a href="{% url 'crear_cotizacion' %}"><i class="fas fa-plus"></i>Crear cotización</a></li>
+        <li><a href="{% url 'lista_facturas' %}"><i class="fas fa-file-alt"></i>Ver facturas</a></li>
+        <li><a href="{% url 'crear_factura' %}"><i class="fas fa-plus"></i>Crear factura</a></li>
+        <li><a href="{% url 'lista_movimientos' %}"><i class="fas fa-exchange-alt"></i>Ver movimientos</a></li>
+        <li><a href="{% url 'crear_movimiento' %}"><i class="fas fa-plus"></i>Crear movimiento</a></li>
+    </ul>
+</div>
 {% endblock %}

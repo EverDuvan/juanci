@@ -1,0 +1,13 @@
+{% extends 'facturacion/base.html' %}
+
+{% block title %}Detalle de Empleado{% endblock %}
+<h2>Lista Empledo</h2>
+{% block content %}
+<h2>{{ empleado.nombre }} {{ empleado.apellido }}</h2>
+<p> Nit: {{ empleado.documento }}</p>
+<p> Dirección: {{ empleado.cargo }}</p>
+<p>Telefono: {{ empleado.telefono }}</p>
+<p>Email: {{ empleado.email }}</p>
+<p></p>
+<a href="{% url 'lista_empleado' %}" class="btn btn-secondary">Volver</a>
+{% endblock %}

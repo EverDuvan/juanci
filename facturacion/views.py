@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Cliente, Producto, Cotizacion, Factura, Movimiento, Proveedor
-from .forms import ClienteForm, DetalleCotizacionFormSet, DetalleFacturaFormSet, ProductoForm, CotizacionForm, FacturaForm, MovimientoForm, ProveedorForm
+from .models import Cliente, Empleado, Producto, Cotizacion, Factura, Movimiento, Proveedor
+from .forms import ClienteForm, DetalleCotizacionFormSet, DetalleFacturaFormSet, EmpleadoForm, ProductoForm, CotizacionForm, FacturaForm, MovimientoForm, ProveedorForm
 
 def inicio(request):
     return render(request, 'facturacion/inicio.html')
@@ -156,3 +156,39 @@ def detalle_cliente(request, pk):
         'cliente': cliente,
         'titulo': f'Detalle de {cliente.nombre}'
     })
+
+
+
+
+
+
+
+# Vistas para empleados
+def lista_empleados(request):
+    empleados = Empleado.objects.all().order_by('-id')
+    return render(request, 'facturacion/lista_empleados.html', {
+        'empleado': empleados,
+        'titulo': 'Lista de Empleado'
+    })
+
+def crear_empleado(request):
+    if request.method == 'POST':
+        form = EmpleadoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_empleados')
+    else:
+        form = EmpleadoForm()
+    
+    return render(request, 'facturacion/crear_empleado.html', {
+        'form': form,
+        'titulo': 'Nuevo Empleado'
+    })
+
+def detalle_empleado(request, pk):
+    empleado = get_object_or_404(Empleado, pk=pk)
+    return render(request, 'facturacion/detalle_empleado.html', {
+        'empleado': empleado,
+        'titulo': f'Detalle de {empleado.nombre}'
+    })
+

@@ -20,5 +20,8 @@ urlpatterns = [
     path('cliente/', views.lista_clientes, name='lista_clientes'),
     path('cliente/crear/', views.crear_cliente, name='crear_cliente'),
     path('cliente/<int:pk>/', views.detalle_cliente, name='detalle_cliente'),
+    path('empleados/', views.lista_empleados, name='lista_empleados'),
+    path('empleados/crear/', views.crear_empleado, name='crear_empleado'),
+    path('empleados/<int:pk>/', views.detalle_empleado, name='detalle_empleado'),
     path('obtener-stock/<int:producto_id>/', views.obtener_stock, name='obtener_stock'),
 ]

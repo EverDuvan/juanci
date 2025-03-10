@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import inlineformset_factory
-from .models import Cliente, DetalleCotizacion, DetalleFactura, Producto, Cotizacion, Factura, Movimiento, Proveedor
+from .models import Cliente, DetalleCotizacion, DetalleFactura, Empleado, Producto, Cotizacion, Factura, Movimiento, Proveedor
 
 class ProductoForm(forms.ModelForm):
     class Meta:
@@ -15,6 +15,11 @@ class ProveedorForm(forms.ModelForm):
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
+        fields = '__all__'
+
+class EmpleadoForm(forms.ModelForm):
+    class Meta:
+        model = Empleado
         fields = '__all__'
 
 class MovimientoForm(forms.ModelForm):
