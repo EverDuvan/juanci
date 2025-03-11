@@ -1,5 +1,58 @@
-<footer class="bg-dark text-white text-center p-3 mt-4">
+<footer class="bg-dark text-white p-4 mt-4">
     <div class="container">
-        <p>&copy; 2025 Juanci Admin. Todos los derechos reservados.</p>
+        <!-- Secciones del footer -->
+        <div class="row">
+            <!-- Información de contacto -->
+            <div class="col-md-4 mb-4">
+                <h5>Contacto</h5>
+                <p>Email: info@juanciadmin.com</p>
+                <p>Teléfono: +123 456 789</p>
+                <p>Dirección: Calle Falsa 123, Ciudad, País</p>
+            </div>
+
+            <!-- Enlaces rápidos -->
+            <div class="col-md-4 mb-4">
+                <h5>Enlaces Rápidos</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'inicio' %}" class="text-white text-decoration-none">Inicio</a></li>
+                    <li><a href="{% url 'lista_productos' %}" class="text-white text-decoration-none">Productos</a></li>
+                    <li><a href="{% url 'lista_clientes' %}" class="text-white text-decoration-none">Clientes</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Política de Privacidad</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Formulario de suscripción -->
+            <div class="col-md-4 mb-4">
+                <h5>Suscríbete</h5>
+                <form>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" placeholder="Tu correo electrónico" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Suscribirse</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Redes sociales -->
+        <div class="text-center mt-4">
+            <a href="https://twitter.com/juanciadmin" class="text-white me-3" target="_blank">
+                <i class="fab fa-twitter fa-2x"></i>
+            </a>
+            <a href="https://facebook.com/juanciadmin" class="text-white me-3" target="_blank">
+                <i class="fab fa-facebook fa-2x"></i>
+            </a>
+            <a href="https://instagram.com/juanciadmin" class="text-white me-3" target="_blank">
+                <i class="fab fa-instagram fa-2x"></i>
+            </a>
+            <a href="https://linkedin.com/juanciadmin" class="text-white me-3" target="_blank">
+                <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+        </div>
+
+        <!-- Derechos de autor -->
+        <div class="text-center mt-4">
+            <p>&copy; 2025 Juanci Admin. Todos los derechos reservados.</p>
+        </div>
     </div>
 </footer>
