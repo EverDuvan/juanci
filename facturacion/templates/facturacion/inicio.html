@@ -10,31 +10,33 @@
 <div class="container">
     <h2>Gestión de Comercializadora <span class="highlight">Juanci</span></h2>
 
-    {% for section, items in menu_sections.items %}
-        <div class="section">
-            <h3>{{ section }}</h3>
-            <div class="menu-container">
-                <div class="menu-group">
-                    <h4>Ver</h4>
-                    {% for item in items.ver %}
-                        <a href="{% url item.url %}" class="menu-item">
-                            <i class="fas {{ item.icon }}"></i>
-                            <span>{{ item.text }}</span>
-                        </a>
-                    {% endfor %}
-                </div>
+    <div class="sections-wrapper">
+        {% for section, items in menu_sections.items %}
+            <div class="section {% cycle 'left' 'right' %}">
+                <h3>{{ section }}</h3>
+                <div class="menu-container">
+                    <div class="menu-group">
+                        <h4>Ver</h4>
+                        {% for item in items.ver %}
+                            <a href="{% url item.url %}" class="menu-item">
+                                <i class="fas {{ item.icon }}"></i>
+                                <span>{{ item.text }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
 
-                <div class="menu-group">
-                    <h4>Crear</h4>
-                    {% for item in items.crear %}
-                        <a href="{% url item.url %}" class="menu-item">
-                            <i class="fas {{ item.icon }}"></i>
-                            <span>{{ item.text }}</span>
-                        </a>
-                    {% endfor %}
+                    <div class="menu-group">
+                        <h4>Crear</h4>
+                        {% for item in items.crear %}
+                            <a href="{% url item.url %}" class="menu-item">
+                                <i class="fas {{ item.icon }}"></i>
+                                <span>{{ item.text }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
