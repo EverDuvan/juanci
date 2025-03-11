@@ -89,3 +89,15 @@ h4 {
 .menu-item:hover i {
     transform: scale(1.2);
 }
+
+.navbar-dark .nav-link {
+    color: #0c0000; /* Blanco */
+}
+
+.navbar-dark .nav-link:hover {
+    color: #cccccc; /* Gris claro al pasar el mouse */
+}
+
+.navbar-dark .nav-link.active {
+    color: #ff9900; /* Naranja para elemento activo */
+}
