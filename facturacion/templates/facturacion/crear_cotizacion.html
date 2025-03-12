@@ -1,89 +1,100 @@
 {% extends 'facturacion/base.html' %}
-{% block title %}
-Crear Cotización
-{% endblock %}
+{% load static %}
+
+{% block title %}Crear Cotización{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
+    <!-- Mensajes de error -->
     {% if formset.errors %}
     <div class="alert alert-danger">
-        Error al cargar los productos: {{ formset.errors }}
+        <strong>Error al cargar los productos:</strong> {{ formset.errors }}
     </div>
     {% endif %}
     
-    <h1>Crear Cotizacion</h1>
+    <h1>Crear Cotización</h1>
 
     <form method="post">
         {% csrf_token %}
         
-        {{ form.as_p }}
+        <!-- Formulario principal -->
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ form.as_p }}
+            </div>
+        </div>
         
-        <div id="productos-section">
-            <h3 class="mb-3">Productos</h3>
-            
-            {{ formset.management_form | safe }}
-            
-            <table class="table table-bordered" id="formset-table">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Descuento</th>
-                        <th>Total</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for form in formset %}
-                    <tr>
-                        <td>{{ form.producto }}</td>
-                        <td>{{ form.cantidad }}</td>
-                        <td>{{ form.precio_unitario_sin_iva }}</td>
-                        <td>{{ form.descuento }}</td>
-                        <td class="total-producto">0.00</td>
-                        <td>
-                            <button 
-                                type="button"
-                                class="btn btn-danger btn-sm eliminar-fila"
-                                data-form-id="{{ form.form.prefix }}">
-                                Eliminar
-                            </button>
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="6" class="text-center">
-                            No hay productos agregados.
-                            <br><small>Use el botón "Agregar Producto" para comenzar.</small>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <!-- Sección de productos -->
+        <div class="card">
+            <div class="card-body">
+                <h3 class="mb-3">Productos</h3>
+                
+                {{ formset.management_form | safe }}
+                
+                <table class="table table-bordered" id="formset-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Descuento</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for form in formset %}
+                        <tr>
+                            <td>{{ form.producto }}</td>
+                            <td>{{ form.cantidad }}</td>
+                            <td>{{ form.precio_unitario_sin_iva }}</td>
+                            <td>{{ form.descuento }}</td>
+                            <td class="total-producto">0.00</td>
+                            <td>
+                                <button 
+                                    type="button"
+                                    class="btn btn-danger btn-sm eliminar-fila"
+                                    data-form-id="{{ form.form.prefix }}">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                No hay productos agregados.
+                                <br><small>Use el botón "Agregar Producto" para comenzar.</small>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
-            <div class="mt-4 text-center">
-                <button 
-                    type="button" 
-                    id="add-product" 
-                    class="btn btn-primary me-2">
-                    Agregar Producto
-                </button>
-                <button 
-                    type="submit" 
-                    class="btn btn-success me-2">
-                    Guardar Cotizacion
-                </button>
-                <a 
-                    href="{% url 'lista_cotizaciones' %}" 
-                    class="btn btn-secondary">
-                    Cancelar
-                </a>
+                <!-- Botones de acción -->
+                <div class="mt-4 text-center">
+                    <button 
+                        type="button" 
+                        id="add-product" 
+                        class="btn btn-primary me-2">
+                        <i class="fas fa-plus"></i> Agregar Producto
+                    </button>
+                    <button 
+                        type="submit" 
+                        class="btn btn-success me-2">
+                        <i class="fas fa-save"></i> Guardar Cotización
+                    </button>
+                    <a 
+                        href="{% url 'lista_cotizaciones' %}" 
+                        class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancelar
+                    </a>
+                </div>
             </div>
         </div>
     </form>
 </div>
 
+<!-- Script para manejar dinámicamente los productos -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     console.log('1. Inicializando el script...');
@@ -108,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <td><input type="number" name="form-__prefix__-precio_unitario_sin_iva" id="id_form-__prefix__-precio_unitario_sin_iva"></td>
             <td><input type="number" name="form-__prefix__-descuento" id="id_form-__prefix__-descuento"></td>
             <td class="total-producto">0.00</td>
-            <td><button type="button" class="btn btn-danger btn-sm eliminar-fila">Eliminar</button></td>
+            <td><button type="button" class="btn btn-danger btn-sm eliminar-fila"><i class="fas fa-trash"></i> Eliminar</button></td>
         `;
         templateRow = emptyRow;
     }

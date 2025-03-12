@@ -49,7 +49,7 @@ def crear_cotizacion(request):
     return render(request, 'facturacion/crear_cotizacion.html', {'form': form, 'formset': formset})
 
 def detalle_cotizacion(request, pk):
-    cotizacion = get_object_or_404(Factura, pk=pk)
+    cotizacion = get_object_or_404(Cotizacion, pk=pk)
     return render(request, 'facturacion/detalle_cotizacion.html', {'cotizacion': cotizacion})
 
 # Vistas para Factura
@@ -156,12 +156,6 @@ def detalle_cliente(request, pk):
         'cliente': cliente,
         'titulo': f'Detalle de {cliente.nombre}'
     })
-
-
-
-
-
-
 
 # Vistas para empleados
 def lista_empleados(request):

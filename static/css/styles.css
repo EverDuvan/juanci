@@ -118,3 +118,286 @@ h4 {
 .navbar-dark .nav-link.active {
     color: #ff9900; /* Naranja para elemento activo */
 }
+
+/* Contenedor del formulario */
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Grupo de campos del formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group p {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+/* Acciones del formulario (botones) */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: white;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5a6268, #4a5258);
+    transform: translateY(-2px);
+}
+
+/* Contenedor del detalle */
+.detail-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Información del detalle */
+.detail-info {
+    margin-bottom: 20px;
+}
+
+.detail-info p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.detail-info strong {
+    color: #007bff;
+}
+
+/* Acciones del detalle (botón Volver) */
+.detail-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: white;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5a6268, #4a5258);
+    transform: translateY(-2px);
+}
+
+/* Contenedor de la tabla */
+.table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    overflow-x: auto; /* Para tablas responsivas */
+}
+
+/* Estilos para la tabla */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Botones de acciones */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    color: white;
+    border: none;
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #138496, #117a8b);
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+    transform: translateY(-2px);
+}
+
+/* Contenedor de acciones */
+.actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+/* Efecto hover para íconos de redes sociales */
+.fa-twitter:hover {
+    color: #1da1f2 !important; /* Azul de Twitter */
+}
+
+.fa-facebook:hover {
+    color: #1877f2 !important; /* Azul de Facebook */
+}
+
+.fa-instagram:hover {
+    color: #e4405f !important; /* Rosa de Instagram */
+}
+
+.fa-linkedin:hover {
+    color: #0a66c2 !important; /* Azul de LinkedIn */
+}
+
+/* Estilos para el formulario de suscripción */
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para los enlaces rápidos */
+.list-unstyled a {
+    transition: color 0.3s, transform 0.2s;
+}
+
+.list-unstyled a:hover {
+    color: #007bff !important; /* Color primario al pasar el mouse */
+    transform: translateX(5px);
+}
+
+/* Estilos para el menú de navegación Header*/
+.navbar-nav .nav-link {
+    color: #000000; /* Texto negro */
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #007bff; /* Color primario al pasar el mouse */
+}
+
+/* Estilos para el enlace activo */
+.navbar-nav .nav-link.active {
+    color: #007bff; /* Color primario */
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+    border-radius: 5px;
+}
+
+/* Estilos para el botón de hamburguesa */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1); /* Borde claro */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Estilos para el logo y título */
+.header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header-logo h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #000000; /* Texto blanco */
+}

@@ -4,48 +4,50 @@
         <div class="row">
             <!-- Información de contacto -->
             <div class="col-md-4 mb-4">
-                <h5>Contacto</h5>
-                <p>Email: info@juanciadmin.com</p>
-                <p>Teléfono: +123 456 789</p>
-                <p>Dirección: Calle Falsa 123, Ciudad, País</p>
+                <h5 class="text-primary">Contacto</h5>
+                <p><i class="fas fa-envelope me-2"></i>Email: info@juanciadmin.com</p>
+                <p><i class="fas fa-phone me-2"></i>Teléfono: +123 456 789</p>
+                <p><i class="fas fa-map-marker-alt me-2"></i>Dirección: Calle Falsa 123, Ciudad, País</p>
             </div>
 
             <!-- Enlaces rápidos -->
             <div class="col-md-4 mb-4">
-                <h5>Enlaces Rápidos</h5>
+                <h5 class="text-primary">Enlaces Rápidos</h5>
                 <ul class="list-unstyled">
-                    <li><a href="{% url 'inicio' %}" class="text-black text-decoration-none">Inicio</a></li>
-                    <li><a href="{% url 'lista_productos' %}" class="text-black text-decoration-none">Productos</a></li>
-                    <li><a href="{% url 'lista_clientes' %}" class="text-black text-decoration-none">Clientes</a></li>
-                    <li><a href="#" class="text-black text-decoration-none">Política de Privacidad</a></li>
-                    <li><a href="#" class="text-black text-decoration-none">Términos y Condiciones</a></li>
+                    <li><a href="{% url 'inicio' %}" class="text-black text-decoration-none"><i class="fas fa-home me-2"></i>Inicio</a></li>
+                    <li><a href="{% url 'lista_productos' %}" class="text-black text-decoration-none"><i class="fas fa-box me-2"></i>Productos</a></li>
+                    <li><a href="{% url 'lista_clientes' %}" class="text-black text-decoration-none"><i class="fas fa-users me-2"></i>Clientes</a></li>
+                    <li><a href="#" class="text-black text-decoration-none"><i class="fas fa-shield-alt me-2"></i>Política de Privacidad</a></li>
+                    <li><a href="#" class="text-black text-decoration-none"><i class="fas fa-file-alt me-2"></i>Términos y Condiciones</a></li>
                 </ul>
             </div>
 
             <!-- Formulario de suscripción -->
             <div class="col-md-4 mb-4">
-                <h5>Suscríbete</h5>
+                <h5 class="text-primary">Suscríbete</h5>
                 <form>
                     <div class="mb-3">
                         <input type="email" class="form-control" placeholder="Tu correo electrónico" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Suscribirse</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane me-2"></i>Suscribirse
+                    </button>
                 </form>
             </div>
         </div>
 
         <!-- Redes sociales -->
         <div class="text-center mt-4">
-            <a href="https://twitter.com/juanciadmin" class="text-black me-3" target="_blank">
+            <a href="https://twitter.com/juanciadmin" class="text-blue me-3" target="_blank">
                 <i class="fab fa-twitter fa-2x"></i>
             </a>
-            <a href="https://facebook.com/juanciadmin" class="text-black me-3" target="_blank">
+            <a href="https://facebook.com/juanciadmin" class="text-blue me-3" target="_blank">
                 <i class="fab fa-facebook fa-2x"></i>
             </a>
-            <a href="https://instagram.com/juanciadmin" class="text-black me-3" target="_blank">
+            <a href="https://instagram.com/juanciadmin" class="text-blue me-3" target="_blank">
                 <i class="fab fa-instagram fa-2x"></i>
             </a>
-            <a href="https://linkedin.com/juanciadmin" class="text-black me-3" target="_blank">
+            <a href="https://linkedin.com/juanciadmin" class="text-blue me-3" target="_blank">
                 <i class="fab fa-linkedin fa-2x"></i>
             </a>
         </div>
