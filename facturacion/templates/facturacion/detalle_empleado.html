@@ -1,13 +1,28 @@
 {% extends 'facturacion/base.html' %}
+{% load static %}
 
 {% block title %}Detalle de Empleado{% endblock %}
-<h2>Lista Empledo</h2>
+
 {% block content %}
-<h2>{{ empleado.nombre }} {{ empleado.apellido }}</h2>
-<p> Nit: {{ empleado.documento }}</p>
-<p> Dirección: {{ empleado.cargo }}</p>
-<p>Telefono: {{ empleado.telefono }}</p>
-<p>Email: {{ empleado.email }}</p>
-<p></p>
-<a href="{% url 'lista_empleado' %}" class="btn btn-secondary">Volver</a>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<div class="container">
+    <h2>Detalle de Empleado</h2>
+
+    <div class="detail-container">
+        <h2>{{ empleado.nombre }} {{ empleado.apellido }}</h2>
+        <div class="detail-info">
+            <p><strong>Nit:</strong> {{ empleado.documento }}</p>
+            <p><strong>Cargo:</strong> {{ cliente.cargo }}</p>
+            <p><strong>Teléfono:</strong> {{ empleado.telefono }}</p>
+            <p><strong>Email:</strong> {{ empleado.email }}</p>
+        </div>
+        <div class="detail-actions">
+            <a href="{% url 'lista_empleados' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

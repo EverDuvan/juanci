@@ -31,6 +31,9 @@
                         <a href="{% url 'lista_clientes' %}" class="nav-link {% if 'clientes' in request.path %}active{% endif %}">Clientes</a>
                     </li>
                     <li class="nav-item">
+                        <a href="{% url 'lista_empleados' %}" class="nav-link {% if 'empleados' in request.path %}active{% endif %}">Empleados</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{% url 'lista_cotizaciones' %}" class="nav-link {% if 'cotizaciones' in request.path %}active{% endif %}">Cotizaciones</a>
                     </li>
                     <li class="nav-item">

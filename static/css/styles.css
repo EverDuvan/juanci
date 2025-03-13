@@ -401,3 +401,148 @@ h4 {
     margin: 0;
     color: #000000; /* Texto blanco */
 }
+
+/* Estilos para las tarjetas */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    color: #007bff; /* Color primario */
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Estilos para la tabla */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #f8f9fa; /* Color de fondo del encabezado */
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1; /* Efecto hover en las filas */
+}
+
+/* Estilos para el botón "Volver" */
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5a6268, #4a5258);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para la tarjeta */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la tabla */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #f8f9fa; /* Color de fondo del encabezado */
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1; /* Efecto hover en las filas */
+}
+
+/* Estilos para los botones */
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #138496, #117a8b);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para la tarjeta */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los campos del formulario */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+/* Estilos para los botones */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5a6268, #4a5258);
+    transform: translateY(-2px);
+}

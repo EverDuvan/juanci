@@ -161,7 +161,7 @@ def detalle_cliente(request, pk):
 def lista_empleados(request):
     empleados = Empleado.objects.all().order_by('-id')
     return render(request, 'facturacion/lista_empleados.html', {
-        'empleado': empleados,
+        'empleados': empleados,
         'titulo': 'Lista de Empleado'
     })
 

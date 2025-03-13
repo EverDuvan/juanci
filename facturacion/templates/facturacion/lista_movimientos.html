@@ -1,32 +1,32 @@
 {% extends 'facturacion/base.html' %}
 
-{% block title %}Productos{% endblock %}
+{% block title %}Movimiento{% endblock %}
 
 {% block content %}
-<h2>Lista de Movimientos</h2>
+<h2>Lista de Movimiento</h2>
 <table class="table">
     <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Stock</th>
+            <th>Número</th>
+            <th>Cliente</th>
+            <th>Fecha de Emisión</th>
+            <th>Total</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        {% for producto in productos %}
+        {% for movimiento in movimientos %}
         <tr>
-            <td>{{ producto.nombre }}</td>
-            <td>{{ producto.descripcion }}</td>
-            <td>{{ producto.precio_venta_con_iva }}</td>
-            <td>{{ producto.stock_actual }}</td>
+            <td>{{ movimiento.numero }}</td>
+            <td>{{ movimiento.cliente.nombre }}</td>
+            <td>{{ movimiento.fecha_emision }}</td>
+            <td>{{ movimiento.total }}</td>
             <td>
-                <a href="{% url 'detalle_producto' producto.pk %}" class="btn btn-info btn-sm">Ver</a>
+                <a href="{% url 'detalle_movimiento' movimiento.pk %}" class="btn btn-info btn-sm">Ver</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-<a href="{% url 'crear_producto' %}" class="btn btn-primary">Crear Movimiento</a>
+<a href="{% url 'crear_movimiento' %}" class="btn btn-primary">Crear Movimiento</a>
 {% endblock %}

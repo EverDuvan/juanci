@@ -1,32 +1,53 @@
 {% extends 'facturacion/base.html' %}
+{% load static %}
 
 {% block title %}Cotizaciones{% endblock %}
 
 {% block content %}
-<h2>Lista de Cotizaciones</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Número</th>
-            <th>Cliente</th>
-            <th>Fecha de Emisión</th>
-            <th>Total</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for cotizacion in cotizaciones %}
-        <tr>
-            <td>{{ cotizacion.numero }}</td>
-            <td>{{ cotizacion.cliente.nombre }}</td>
-            <td>{{ cotizacion.fecha_emision }}</td>
-            <td>{{ cotizacion.total }}</td>
-            <td>
-                <a href="{% url 'detalle_cotizacion' cotizacion.pk %}" class="btn btn-info btn-sm">Ver</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<a href="{% url 'crear_cotizacion' %}" class="btn btn-primary">Crear Cotización</a>
+<div class="container mt-4">
+    <h2 class="mb-4">Lista de Cotizaciones</h2>
+
+    <!-- Tabla de cotizaciones -->
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Número</th>
+                        <th>Cliente</th>
+                        <th>Fecha de Emisión</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cotizacion in cotizaciones %}
+                    <tr>
+                        <td>{{ cotizacion.numero }}</td>
+                        <td>{{ cotizacion.cliente.nombre }}</td>
+                        <td>{{ cotizacion.fecha_emision }}</td>
+                        <td>{{ cotizacion.total }}</td>
+                        <td>
+                            <a href="{% url 'detalle_cotizacion' cotizacion.pk %}" class="btn btn-info btn-sm">
+                                <i class="fas fa-eye"></i> Ver
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">No hay cotizaciones registradas.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Botón para crear cotización -->
+    <div class="mt-4 text-center">
+        <a href="{% url 'crear_cotizacion' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Crear Cotización
+        </a>
+    </div>
+</div>
 {% endblock %}

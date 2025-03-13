@@ -1,41 +1,73 @@
 {% extends 'facturacion/base.html' %}
+{% load static %}
 
 {% block title %}Detalle de Cotización{% endblock %}
 
 {% block content %}
-<h2>Detalle de Cotización</h2>
-<p><strong>Número:</strong> {{ cotizacion.numero }}</p>
-<p><strong>Cliente:</strong> {{ cotizacion.cliente.nombre }}</p>
-<p><strong>Fecha de Emisión:</strong> {{ cotizacion.fecha_emision }}</p>
-<p><strong>Fecha de Vencimiento:</strong> {{ cotizacion.fecha_vencimiento }}</p>
-<p><strong>Estado:</strong> {{ cotizacion.estado }}</p>
-<p><strong>Observaciones:</strong> {{ cotizacion.observaciones }}</p>
+<div class="container mt-4">
+    <h2 class="mb-4">Detalle de Cotización</h2>
 
-<h3>Productos</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Descuento</th>
-            <th>Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for detalle in cotizacion.detallecotizacion_set.all %}
-        <tr>
-            <td>{{ detalle.producto.nombre }}</td>
-            <td>{{ detalle.cantidad }}</td>
-            <td>{{ detalle.precio_unitario_sin_iva }}</td>
-            <td>{{ detalle.descuento }}</td>
-            <td>{{ detalle.total }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <!-- Información de la cotización -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Información General</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Número:</strong> {{ cotizacion.numero }}</p>
+                    <p><strong>Cliente:</strong> {{ cotizacion.cliente.nombre }}</p>
+                    <p><strong>Fecha de Emisión:</strong> {{ cotizacion.fecha_emision }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Fecha de Vencimiento:</strong> {{ cotizacion.fecha_vencimiento }}</p>
+                    <p><strong>Estado:</strong> {{ cotizacion.estado }}</p>
+                    <p><strong>Observaciones:</strong> {{ cotizacion.observaciones }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<p><strong>Total:</strong> {{ cotizacion.total }}</p>
+    <!-- Lista de productos -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Productos</h5>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Descuento</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detalle in cotizacion.detallecotizacion_set.all %}
+                    <tr>
+                        <td>{{ detalle.producto.nombre }}</td>
+                        <td>{{ detalle.cantidad }}</td>
+                        <td>{{ detalle.precio_unitario_sin_iva }}</td>
+                        <td>{{ detalle.descuento }}</td>
+                        <td>{{ detalle.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-<a href="{% url 'lista_cotizaciones' %}" class="btn btn-secondary">Volver</a>
+    <!-- Total de la cotización -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Total</h5>
+            <p class="lead"><strong>Total:</strong> {{ cotizacion.total }}</p>
+        </div>
+    </div>
+
+    <!-- Botón de volver -->
+    <div class="text-center">
+        <a href="{% url 'lista_cotizaciones' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+    </div>
+</div>
 {% endblock %}
